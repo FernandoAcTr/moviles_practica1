@@ -28,15 +28,18 @@ class DashboradPage extends StatelessWidget {
               trailing: Icon(Icons.chevron_right),
               onTap: () {
                 Navigator.of(context).pop();
-                Navigator.pushNamed(context, Routes.practica1);
+                Navigator.pushNamed(context, Routes.propinas);
               },
             ),
             ListTile(
-              title: Text('Practica 2'),
-              subtitle: Text('Descripcion corta'),
-              leading: Icon(Icons.monetization_on_outlined),
+              title: Text('Intenciones'),
+              subtitle: Text('Manejo de intenciones'),
+              leading: Icon(Icons.phone_android),
               trailing: Icon(Icons.chevron_right),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, Routes.intenciones);
+              },
             ),
           ],
         ),

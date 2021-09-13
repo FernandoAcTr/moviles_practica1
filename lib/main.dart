@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
+import 'package:practica2/src/pages/intenciones_screen.dart';
+import 'package:practica2/src/pages/splash_screen.dart';
 import 'package:practica2/src/pages/dashboard_page.dart';
 import 'package:practica2/src/pages/login_page.dart';
 import 'package:practica2/src/pages/propinas_screen.dart';
@@ -15,9 +17,11 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.home,
       theme: myTheme,
       routes: {
-        Routes.home: (_) => LoginPage(),
+        Routes.home: (_) => SplashScreen(),
+        Routes.login: (_) => LoginPage(),
         Routes.dashboard: (_) => DashboradPage(),
-        Routes.practica1: (_) => Propinas(),
+        Routes.propinas: (_) => Propinas(),
+        Routes.intenciones: (_) => Intenciones(),
       },
     );
   }
