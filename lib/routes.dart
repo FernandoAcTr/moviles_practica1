@@ -4,4 +4,6 @@ class Routes {
   static final dashboard = 'dashboard';
   static final propinas = 'propinas';
   static final intenciones = 'intenciones';
+  static final notas = 'notas';
+  static final agregar = 'agregar';
 }

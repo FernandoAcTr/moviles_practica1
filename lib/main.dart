@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
+import 'package:practica2/src/pages/add_note_page.dart';
 import 'package:practica2/src/pages/intenciones_screen.dart';
+import 'package:practica2/src/pages/notas_page.dart';
 import 'package:practica2/src/pages/splash_screen.dart';
 import 'package:practica2/src/pages/dashboard_page.dart';
 import 'package:practica2/src/pages/login_page.dart';
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
         Routes.dashboard: (_) => DashboradPage(),
         Routes.propinas: (_) => Propinas(),
         Routes.intenciones: (_) => Intenciones(),
+        Routes.notas: (_) => NotasPage(),
+        Routes.agregar: (_) => AddNotePage(),
       },
     );
   }

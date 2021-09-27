@@ -41,6 +41,16 @@ class DashboradPage extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.intenciones);
               },
             ),
+             ListTile(
+              title: Text('Notas'),
+              subtitle: Text('CRUD de Notas'),
+              leading: Icon(Icons.phone_android),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, Routes.notas);
+              },
+            ),
           ],
         ),
       ),
