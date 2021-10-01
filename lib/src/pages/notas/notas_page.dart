@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
 import 'package:practica2/src/database/db_helper.dart';
 import 'package:practica2/src/models/nota_model.dart';
+import 'package:practica2/src/pages/notas/widget/no_data_widget.dart';
+import 'package:practica2/src/pages/notas/widgets/nota_widget.dart';
 
 class NotasPage extends StatefulWidget {
   const NotasPage({Key? key}) : super(key: key);
@@ -48,7 +50,7 @@ class _NotasPageState extends State<NotasPage> {
               return Center(child: CircularProgressIndicator());
             }
 
-            if (snapshot.data!.isEmpty) return _noData();
+            if (snapshot.data!.isEmpty) return NoDataWidget();
 
             return _notasList(snapshot.data!);
           },
@@ -57,43 +59,15 @@ class _NotasPageState extends State<NotasPage> {
     );
   }
 
-  LayoutBuilder _noData() {
-    return LayoutBuilder(builder: (context, constraints) {
-      return ListView(
-        children: [
-          Container(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Center(child: Text('Sin Notas agregadas aún')),
-          )
-        ],
-      );
-    });
-  }
-
   Widget _notasList(List<Nota> notas) {
     return ListView.builder(
       itemCount: notas.length,
       itemBuilder: (context, index) {
         final nota = notas[index];
 
-        return Dismissible(
-          key: Key(index.toString()),
-          background: Container(
-            color: Colors.red,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            alignment: AlignmentDirectional.centerStart,
-            child: Icon(Icons.delete, color: Colors.white),
-          ),
-          child: Card(
-            child: ListTile(
-              title: Text(nota.titulo!, style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text(nota.detalle!),
-              trailing: IconButton(
-                icon: Icon(Icons.edit),
-                onPressed: () => Navigator.pushNamed(context, Routes.agregar, arguments: nota),
-              ),
-            ),
-          ),
+        return NotaWidget(
+          index: index,
+          nota: nota,
           onDismissed: (direction) {
             _dbHelper.delete(nota.id!);
             setState(() {
@@ -102,26 +76,6 @@ class _NotasPageState extends State<NotasPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Nota eliminada")),
             );
-          },
-          confirmDismiss: (direction) async {
-            final result = await showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                content: Text('¿Estas Seguro?'),
-                actions: [
-                  TextButton(
-                    child: Text('Sí, eliminar'),
-                    onPressed: () => Navigator.of(context).pop(true),
-                  ),
-                  TextButton(
-                    child: Text('Cancelar'),
-                    onPressed: () => Navigator.of(context).pop(false),
-                  )
-                ],
-              ),
-            );
-
-            return result;
           },
         );
       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:practica2/routes.dart';
+import 'package:practica2/src/pages/profile/widgets/picture_widget.dart';
+import 'package:practica2/src/pages/profile/widgets/user_info_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -29,56 +30,14 @@ class ProfilePage extends StatelessWidget {
   Column _buildInfoLayer(BuildContext context) {
     return Column(
       children: [
-        //Container superior
         Container(
           height: MediaQuery.of(context).size.height * 0.45,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Hero(
-                tag: 'avatar',
-                child: CircleAvatar(
-                  radius: 45,
-                  backgroundImage: NetworkImage(
-                    'https://upload.wikimedia.org/wikipedia/commons/7/70/Ben_Affleck_by_Gage_Skidmore_3.jpg',
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Fernando Acosta Tovar',
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'Ingeniero en sistemas Computacionales del ITC',
-                style: TextStyle(color: Colors.white, fontSize: 11.0),
-              ),
-            ],
-          ),
+          child: PictureWidget(),
         ),
-        //Container inferior
         Container(
           height: MediaQuery.of(context).size.height * 0.55,
           padding: EdgeInsets.all(16),
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            elevation: 4,
-            child: Column(
-              children: [
-                ListTile(
-                  leading: Icon(Icons.phone),
-                  title: Text('Teléfono'),
-                  subtitle: Text('4111267600'),
-                ),
-                ListTile(
-                  leading: Icon(Icons.email),
-                  title: Text('Email'),
-                  subtitle: Text('ferando@gmail.com'),
-                ),
-              ],
-            ),
-          ),
+          child: UserInfoWidget(),
         ),
       ],
     );

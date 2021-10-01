@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/pages/add_note_page.dart';
-import 'package:practica2/src/pages/edit_profile_page.dart';
-import 'package:practica2/src/pages/intenciones_screen.dart';
-import 'package:practica2/src/pages/notas_page.dart';
-import 'package:practica2/src/pages/profile_page.dart';
+import 'package:practica2/src/pages/add_note/add_note_page.dart';
+import 'package:practica2/src/pages/edit_profile/edit_profile_page.dart';
+import 'package:practica2/src/pages/intenciones/intenciones_page.dart';
+import 'package:practica2/src/pages/notas/notas_page.dart';
+import 'package:practica2/src/pages/profile/profile_page.dart';
 import 'package:practica2/src/pages/splash_screen.dart';
 import 'package:practica2/src/pages/dashboard_page.dart';
 import 'package:practica2/src/pages/login_page.dart';
-import 'package:practica2/src/pages/propinas_screen.dart';
+import 'package:practica2/src/pages/propinas/propinas_page.dart';
 import 'package:practica2/src/utils/theme.dart';
 
 void main() => runApp(MyApp());

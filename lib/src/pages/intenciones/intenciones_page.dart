@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/pages/intenciones/widgets/card_option_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Intenciones extends StatefulWidget {
@@ -28,21 +29,12 @@ class _IntencionesState extends State<Intenciones> {
     );
   }
 
-  Card _createCardOption(String title, String subtitle, IconData icon, [VoidCallback? onTap]) {
-    return Card(
-      elevation: 8.0,
-      child: ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        leading: Container(
-          height: 40,
-          padding: EdgeInsets.only(right: 10),
-          child: Icon(icon),
-          decoration: BoxDecoration(border: Border(right: BorderSide(width: 1.0))),
-        ),
-        trailing: Icon(Icons.chevron_right),
-        onTap: onTap,
-      ),
+  Widget _createCardOption(String title, String subtitle, IconData icon, [VoidCallback? onTap]) {
+    return CardOption(
+      title: title,
+      subtitle: subtitle,
+      icon: icon,
+      onTap: onTap,
     );
   }
 
