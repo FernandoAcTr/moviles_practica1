@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:practica2/routes.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -19,7 +20,7 @@ class ProfilePage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(context, Routes.editProfile),
         child: Icon(Icons.edit),
       ),
     );
@@ -28,6 +29,7 @@ class ProfilePage extends StatelessWidget {
   Column _buildInfoLayer(BuildContext context) {
     return Column(
       children: [
+        //Container superior
         Container(
           height: MediaQuery.of(context).size.height * 0.45,
           child: Column(
@@ -55,6 +57,7 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ),
+        //Container inferior
         Container(
           height: MediaQuery.of(context).size.height * 0.55,
           padding: EdgeInsets.all(16),

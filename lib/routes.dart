@@ -7,4 +7,5 @@ class Routes {
   static final notas = 'notas';
   static final agregar = 'agregar';
   static final profile = 'profile';
+  static final editProfile = 'edit_profile';
 }
