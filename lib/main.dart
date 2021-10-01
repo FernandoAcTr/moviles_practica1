@@ -3,6 +3,7 @@ import 'package:practica2/routes.dart';
 import 'package:practica2/src/pages/add_note/add_note_page.dart';
 import 'package:practica2/src/pages/edit_profile/edit_profile_page.dart';
 import 'package:practica2/src/pages/intenciones/intenciones_page.dart';
+import 'package:practica2/src/pages/movies/movies_page.dart';
 import 'package:practica2/src/pages/notas/notas_page.dart';
 import 'package:practica2/src/pages/profile/profile_page.dart';
 import 'package:practica2/src/pages/splash_screen.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         Routes.agregar: (_) => AddNotePage(),
         Routes.profile: (_) => ProfilePage(),
         Routes.editProfile: (_) => EditProfilePage(),
+        Routes.movies: (_) => MoviesPage(),
       },
     );
   }

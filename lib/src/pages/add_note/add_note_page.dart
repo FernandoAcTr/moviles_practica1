@@ -14,6 +14,8 @@ class _AddNotePageState extends State<AddNotePage> {
 
   final _controllerTitutlo = TextEditingController();
   final _controllerDetalle = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   bool editing = false;
   Nota? oldNote;
 
@@ -40,53 +42,63 @@ class _AddNotePageState extends State<AddNotePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            TextField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Nota',
-                labelText: 'Título de la Nota',
-                errorText: 'Este campo es obligatorio',
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: 'Nota',
+                  labelText: 'Título de la Nota',
+                ),
+                controller: _controllerTitutlo,
+                validator: (value) {
+                  print(value?.isEmpty);
+                  if (value?.isEmpty == true) return 'El campo es obligatorio';
+                },
               ),
-              controller: _controllerTitutlo,
-            ),
-            SizedBox(height: 16),
-            TextField(
-              keyboardType: TextInputType.text,
-              maxLines: 5,
-              decoration: InputDecoration(
-                hintText: 'Nota',
-                labelText: 'Detalle de la Nota',
-                errorText: 'Este campo es obligatorio',
+              SizedBox(height: 16),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                maxLines: 5,
+                decoration: InputDecoration(
+                  hintText: 'Nota',
+                  labelText: 'Detalle de la Nota',
+                ),
+                controller: _controllerDetalle,
+                validator: (value) {
+                  if (value?.isEmpty == true) return 'El campo es obligatorio';
+                },
               ),
-              controller: _controllerDetalle,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                final titulo = _controllerTitutlo.text;
-                final detalle = _controllerDetalle.text;
+              ElevatedButton(
+                onPressed: () async {
+                  final titulo = _controllerTitutlo.text;
+                  final detalle = _controllerDetalle.text;
 
-                int result = 0;
-                if (!editing) {
-                  final newNote = Nota(titulo: titulo, detalle: detalle);
-                  result = await _dbHelper.insert(newNote.toMap());
-                } else {
-                  oldNote!.titulo = titulo;
-                  oldNote!.detalle = detalle;
-                  result = await _dbHelper.update(oldNote!.toMap());
-                }
+                  if (!_formKey.currentState!.validate()) return;
 
-                if (result > 0) {
-                  Navigator.pop(context);
-                } else {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text('Ocurrió un error al agregar la nota')));
-                }
-              },
-              child: Text('Guardar Nota'),
-            )
-          ],
+                  int result = 0;
+                  if (!editing) {
+                    final newNote = Nota(titulo: titulo, detalle: detalle);
+                    result = await _dbHelper.insert(newNote.toMap());
+                  } else {
+                    oldNote!.titulo = titulo;
+                    oldNote!.detalle = detalle;
+                    result = await _dbHelper.update(oldNote!.toMap());
+                  }
+
+                  if (result > 0) {
+                    Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Ocurrió un error al agregar la nota')));
+                  }
+                },
+                child: Text('Guardar Nota'),
+              )
+            ],
+          ),
         ),
       ),
     );

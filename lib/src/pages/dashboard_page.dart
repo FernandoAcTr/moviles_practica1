@@ -51,11 +51,21 @@ class DashboradPage extends StatelessWidget {
             ListTile(
               title: Text('Notas'),
               subtitle: Text('CRUD de Notas'),
-              leading: Icon(Icons.phone_android),
+              leading: Icon(Icons.note),
               trailing: Icon(Icons.chevron_right),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.pushNamed(context, Routes.notas);
+              },
+            ),
+            ListTile(
+              title: Text('Películas'),
+              subtitle: Text('Las películas más populares'),
+              leading: Icon(Icons.movie),
+              trailing: Icon(Icons.chevron_right),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, Routes.movies);
               },
             ),
           ],

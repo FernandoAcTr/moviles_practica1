@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
 import 'package:practica2/src/database/db_helper.dart';
 import 'package:practica2/src/models/nota_model.dart';
-import 'package:practica2/src/pages/notas/widget/no_data_widget.dart';
+import 'package:practica2/src/pages/notas/widgets/no_data_widget.dart';
 import 'package:practica2/src/pages/notas/widgets/nota_widget.dart';
 
 class NotasPage extends StatefulWidget {
