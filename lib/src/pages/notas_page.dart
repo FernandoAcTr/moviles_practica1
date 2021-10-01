@@ -26,6 +26,7 @@ class _NotasPageState extends State<NotasPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Gestión de notas'),
+        brightness: Brightness.dark,
         actions: [
           IconButton(onPressed: () => Navigator.pushNamed(context, Routes.agregar), icon: Icon(Icons.note_add)),
         ],

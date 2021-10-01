@@ -8,6 +8,7 @@ class Propinas extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Propinas'),
+        brightness: Brightness.dark,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

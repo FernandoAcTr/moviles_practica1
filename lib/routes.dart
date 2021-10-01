@@ -6,4 +6,5 @@ class Routes {
   static final intenciones = 'intenciones';
   static final notas = 'notas';
   static final agregar = 'agregar';
+  static final profile = 'profile';
 }

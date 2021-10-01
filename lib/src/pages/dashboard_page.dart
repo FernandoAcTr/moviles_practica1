@@ -8,6 +8,7 @@ class DashboradPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('DASHBOARD'),
         backgroundColor: Theme.of(context).primaryColor,
+        brightness: Brightness.dark,
       ),
       drawer: Drawer(
         child: ListView(
@@ -15,10 +16,16 @@ class DashboradPage extends StatelessWidget {
             UserAccountsDrawerHeader(
               accountName: Text('ESC Fernando Acosta'),
               accountEmail: Text('fernando@gmail.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  'https://upload.wikimedia.org/wikipedia/commons/7/70/Ben_Affleck_by_Gage_Skidmore_3.jpg',
+              currentAccountPicture: GestureDetector(
+                child: Hero(
+                  tag: 'avatar',
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      'https://upload.wikimedia.org/wikipedia/commons/7/70/Ben_Affleck_by_Gage_Skidmore_3.jpg',
+                    ),
+                  ),
                 ),
+                onTap: () => Navigator.pushNamed(context, Routes.profile),
               ),
             ),
             ListTile(
@@ -41,7 +48,7 @@ class DashboradPage extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.intenciones);
               },
             ),
-             ListTile(
+            ListTile(
               title: Text('Notas'),
               subtitle: Text('CRUD de Notas'),
               leading: Icon(Icons.phone_android),

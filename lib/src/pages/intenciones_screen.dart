@@ -14,6 +14,7 @@ class _IntencionesState extends State<Intenciones> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Intenciones'),
+        brightness: Brightness.dark,
       ),
       body: ListView(
         children: [
