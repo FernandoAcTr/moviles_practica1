@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/pages/edit_profile/widgets/profile_picture_widget.dart';
-import 'package:practica2/src/pages/edit_profile/widgets/text_field_widget.dart';
+import 'package:practica2/src/ui/pages/edit_profile/widgets/profile_picture_widget.dart';
+import 'package:practica2/src/ui/pages/edit_profile/widgets/text_field_widget.dart';
 
 class EditProfilePage extends StatelessWidget {
   @override

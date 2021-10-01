@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/pages/add_note/add_note_page.dart';
-import 'package:practica2/src/pages/edit_profile/edit_profile_page.dart';
-import 'package:practica2/src/pages/intenciones/intenciones_page.dart';
-import 'package:practica2/src/pages/movies/movies_page.dart';
-import 'package:practica2/src/pages/notas/notas_page.dart';
-import 'package:practica2/src/pages/profile/profile_page.dart';
-import 'package:practica2/src/pages/splash_screen.dart';
-import 'package:practica2/src/pages/dashboard_page.dart';
-import 'package:practica2/src/pages/login_page.dart';
-import 'package:practica2/src/pages/propinas/propinas_page.dart';
-import 'package:practica2/src/utils/theme.dart';
+import 'package:practica2/src/ui/pages/add_note/add_note_page.dart';
+import 'package:practica2/src/ui/pages/edit_profile/edit_profile_page.dart';
+import 'package:practica2/src/ui/pages/intenciones/intenciones_page.dart';
+import 'package:practica2/src/ui/pages/movies/movies_page.dart';
+import 'package:practica2/src/ui/pages/notas/notas_page.dart';
+import 'package:practica2/src/ui/pages/profile/profile_page.dart';
+import 'package:practica2/src/ui/pages/splash_screen.dart';
+import 'package:practica2/src/ui/pages/dashboard_page.dart';
+import 'package:practica2/src/ui/pages/login_page.dart';
+import 'package:practica2/src/ui/pages/propinas/propinas_page.dart';
+import 'package:practica2/src/ui/theme.dart';
 
 void main() => runApp(MyApp());
 

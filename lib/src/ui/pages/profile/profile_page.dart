@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/pages/profile/widgets/picture_widget.dart';
-import 'package:practica2/src/pages/profile/widgets/user_info_widget.dart';
+import 'package:practica2/src/ui/pages/profile/widgets/picture_widget.dart';
+import 'package:practica2/src/ui/pages/profile/widgets/user_info_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   @override

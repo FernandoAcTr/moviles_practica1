@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/database/db_helper.dart';
-import 'package:practica2/src/models/nota_model.dart';
-import 'package:practica2/src/pages/notas/widgets/no_data_widget.dart';
-import 'package:practica2/src/pages/notas/widgets/nota_widget.dart';
+import 'package:practica2/src/data/repositories/nota_repository.dart';
+import 'package:practica2/src/domain/models/nota.dart';
+import 'package:practica2/src/ui/pages/notas/widgets/no_data_widget.dart';
+import 'package:practica2/src/ui/pages/notas/widgets/nota_widget.dart';
 
 class NotasPage extends StatefulWidget {
   const NotasPage({Key? key}) : super(key: key);
@@ -13,14 +13,14 @@ class NotasPage extends StatefulWidget {
 }
 
 class _NotasPageState extends State<NotasPage> {
-  late DatabaseHelper _dbHelper;
+  late NotaService _dbHelper;
   Future<List<Nota>>? _listNotas;
 
   @override
   void initState() {
     super.initState();
-    _dbHelper = DatabaseHelper();
-    _listNotas = _dbHelper.getAllNotes();
+    _dbHelper = NotaService();
+    _listNotas = _dbHelper.findAll();
   }
 
   @override
@@ -36,7 +36,7 @@ class _NotasPageState extends State<NotasPage> {
       body: RefreshIndicator(
         onRefresh: () async {
           setState(() {
-            _listNotas = _dbHelper.getAllNotes();
+            _listNotas = _dbHelper.findAll();
           });
         },
         child: FutureBuilder(
@@ -71,7 +71,7 @@ class _NotasPageState extends State<NotasPage> {
           onDismissed: (direction) {
             _dbHelper.delete(nota.id!);
             setState(() {
-              _listNotas = _dbHelper.getAllNotes();
+              _listNotas = _dbHelper.findAll();
             });
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Nota eliminada")),

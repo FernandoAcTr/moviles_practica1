@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/services/movie_service.dart';
+import 'package:practica2/src/data/services/movie_service.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({Key? key}) : super(key: key);

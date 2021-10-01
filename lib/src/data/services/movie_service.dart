@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:practica2/src/network/movies.dart';
+import 'package:practica2/src/data/network/movie_response.dart';
 import 'package:http/http.dart' as http;
 
 class MovieService {
