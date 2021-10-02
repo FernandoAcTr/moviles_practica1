@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 
 class DBHelper {
   final _nameDB = "NOTASDB";
-  final _versionDB = 2;
+  final _versionDB = 1;
   final notasTable = 'notas';
   final userTable = 'user';
 
@@ -39,7 +39,7 @@ class DBHelper {
 
   _createUserTable(Database db) async {
     final sql =
-        "CREATE TABLE $userTable (id INTEGER PRIMARY KEY, nombre VARCHAR(50), a_paterno VARCHAR(50), a_materno VARCHAR(50), email VARCHAR(100), telefono VARCHAR(10), about varchar(255))";
+        "CREATE TABLE $userTable (id INTEGER PRIMARY KEY, nombre VARCHAR(50), a_paterno VARCHAR(50), a_materno VARCHAR(50), email VARCHAR(100), telefono VARCHAR(10), about varchar(255), foto varchar(255))";
     await db.execute(sql);
   }
 }

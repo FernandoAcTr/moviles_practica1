@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
+import 'package:practica2/src/data/repositories/auth_repository.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool loading = false;
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +56,16 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget createLoginButton() {
-    return loading
+    return _loading
         ? Center(child: CircularProgressIndicator())
         : ElevatedButton(
             onPressed: () async {
               setState(() {
-                loading = true;
+                _loading = true;
               });
               await Future.delayed(Duration(seconds: 2));
               setState(() {
-                loading = false;
+                _loading = false;
               });
               Navigator.pushReplacementNamed(context, Routes.dashboard);
             },

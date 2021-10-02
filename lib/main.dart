@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Routes.home: (_) => SplashScreen(),
         Routes.login: (_) => LoginPage(),
-        Routes.dashboard: (_) => DashboradPage(),
+        Routes.dashboard: (_) => DashboardPage(),
         Routes.propinas: (_) => Propinas(),
         Routes.intenciones: (_) => Intenciones(),
         Routes.notas: (_) => NotasPage(),

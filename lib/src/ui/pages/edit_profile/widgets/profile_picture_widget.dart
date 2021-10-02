@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/data/repositories/auth_repository.dart';
+import 'package:practica2/src/domain/models/user.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
+  final _authRepository = AuthRepository();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -35,20 +39,26 @@ class ProfilePictureWidget extends StatelessWidget {
   }
 
   Widget _buildProfilePicture() {
-    return Hero(
-      tag: 'avatar',
-      child: ClipOval(
-        child: Material(
-          child: Ink.image(
-            image:
-                NetworkImage('https://upload.wikimedia.org/wikipedia/commons/7/70/Ben_Affleck_by_Gage_Skidmore_3.jpg'),
-            fit: BoxFit.cover,
-            width: 128,
-            height: 128,
-            child: InkWell(onTap: () {}),
+    return FutureBuilder(
+      future: _authRepository.currentUser,
+      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+        final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
+        
+        return Hero(
+          tag: 'avatar',
+          child: ClipOval(
+            child: Material(
+              child: Ink.image(
+                image: user != null ? AssetImage('assets/no-foto.jpg') : AssetImage('assets/no-foto.jpg'),
+                fit: BoxFit.cover,
+                width: 128,
+                height: 128,
+                child: InkWell(onTap: () {}),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
