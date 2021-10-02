@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
@@ -28,8 +30,7 @@ class DashboardPage extends StatelessWidget {
                     child: Hero(
                       tag: 'avatar',
                       child: CircleAvatar(
-                        backgroundImage:
-                            user != null ? AssetImage('assets/no-foto.jpg') : AssetImage('assets/no-foto.jpg'),
+                        backgroundImage: _getImage(user),
                       ),
                     ),
                     onTap: () => Navigator.pushNamed(context, Routes.profile),
@@ -82,4 +83,6 @@ class DashboardPage extends StatelessWidget {
       ),
     );
   }
+
+  _getImage(User? user) => user?.foto != null ? FileImage(File(user!.foto!)) : AssetImage('assets/no-foto.jpg');
 }

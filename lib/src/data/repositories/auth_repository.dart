@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:practica2/src/data/database/db_helper.dart';
 import 'package:practica2/src/domain/contracts/I_auth.dart';
 import 'package:practica2/src/domain/models/user.dart';
@@ -48,6 +50,10 @@ class AuthRepository implements AbstractAuthRepository {
       );
       await db!.insert(_dbHelper.userTable, user.toMap());
     } else {
+      if (foto != null && user.foto != null) {
+        final oldFoto = File(user.foto!);
+        if (oldFoto.existsSync()) oldFoto.deleteSync();
+      }
       user = user.copyWith(
         nombre: nombre,
         aPaterno: aPaterno,

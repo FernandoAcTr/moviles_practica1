@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
 import 'package:practica2/src/domain/models/user.dart';
@@ -19,7 +21,7 @@ class PictureWidget extends StatelessWidget {
               tag: 'avatar',
               child: CircleAvatar(
                 radius: 45,
-                backgroundImage: user != null ? AssetImage('assets/no-foto.jpg') : AssetImage('assets/no-foto.jpg'),
+                backgroundImage: _getImage(user),
               ),
             ),
             SizedBox(height: 16),
@@ -41,4 +43,6 @@ class PictureWidget extends StatelessWidget {
       },
     );
   }
+
+  _getImage(User? user) => user?.foto != null ? FileImage(File(user!.foto!)) : AssetImage('assets/no-foto.jpg');
 }

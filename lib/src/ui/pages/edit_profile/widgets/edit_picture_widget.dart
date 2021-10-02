@@ -1,28 +1,42 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
+import 'package:practica2/src/device/ImageSelector.dart';
 import 'package:practica2/src/domain/models/user.dart';
 
-class ProfilePictureWidget extends StatelessWidget {
+class EditPictureWidget extends StatefulWidget {
+  @override
+  _EditPictureWidgetState createState() => _EditPictureWidgetState();
+}
+
+class _EditPictureWidgetState extends State<EditPictureWidget> {
   final _authRepository = AuthRepository();
+  final _imageSelector = ImageSelector();
+  File? file;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         _buildProfilePicture(),
-        _buildEditPictureIcon(),
+        _buildEditPictureIcon(context),
       ],
     );
   }
 
-  Widget _buildEditPictureIcon() {
+  Widget _buildEditPictureIcon(BuildContext context) {
     return Positioned(
       bottom: 0,
       right: 4,
       child: _buildCircle(
         child: _buildCircle(
           child: InkWell(
-            onTap: () {},
+            onTap: () async {
+              file = await _imageSelector.showSelectionDialog(context);
+              if (file != null) _authRepository.editProfile(foto: file!.path);
+              setState(() {});
+            },
             child: Icon(
               Icons.photo_camera_outlined,
               size: 20,
@@ -43,13 +57,13 @@ class ProfilePictureWidget extends StatelessWidget {
       future: _authRepository.currentUser,
       builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
         final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
-        
+
         return Hero(
           tag: 'avatar',
           child: ClipOval(
             child: Material(
               child: Ink.image(
-                image: user != null ? AssetImage('assets/no-foto.jpg') : AssetImage('assets/no-foto.jpg'),
+                image: getImage(user),
                 fit: BoxFit.cover,
                 width: 128,
                 height: 128,
@@ -74,5 +88,12 @@ class ProfilePictureWidget extends StatelessWidget {
         child: child,
       ),
     );
+  }
+
+  getImage(User? user) {
+    if (file != null) return FileImage(file!);
+    if (user?.foto != null) return FileImage(File(user!.foto!));
+
+    return AssetImage('assets/no-foto.jpg');
   }
 }

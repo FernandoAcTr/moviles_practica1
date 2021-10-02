@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
 import 'package:practica2/src/domain/models/user.dart';
-import 'package:practica2/src/ui/pages/edit_profile/widgets/profile_picture_widget.dart';
+import 'package:practica2/src/ui/pages/edit_profile/widgets/edit_picture_widget.dart';
 import 'package:practica2/src/ui/pages/edit_profile/widgets/text_field_widget.dart';
 
 class EditProfilePage extends StatelessWidget {
@@ -13,7 +13,6 @@ class EditProfilePage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _telefonoController = TextEditingController();
   final _aboutController = TextEditingController();
-
   final _authRepository = AuthRepository();
 
   @override
@@ -24,24 +23,24 @@ class EditProfilePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.black54),
       ),
-      body: Form(
-        key: _formKey,
-        child: FutureBuilder(
-          future: _authRepository.currentUser,
-          builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-            final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
-            _nombreController.text = user != null ? user.nombre! : '';
-            _aPaternoController.text = user != null ? user.aPaterno! : '';
-            _aMaternoController.text = user != null ? user.aMaterno! : '';
-            _emailController.text = user != null ? user.email! : '';
-            _telefonoController.text = user != null ? user.telefono! : '';
-            _aboutController.text = user != null ? user.about! : '';
+      body: FutureBuilder(
+        future: _authRepository.currentUser,
+        builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+          final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
+          _nombreController.text = user != null && user.nombre != null ? user.nombre! : '';
+          _aPaternoController.text = user != null && user.aPaterno != null ? user.aPaterno! : '';
+          _aMaternoController.text = user != null && user.aMaterno != null ? user.aMaterno! : '';
+          _emailController.text = user != null && user.email != null ? user.email! : '';
+          _telefonoController.text = user != null && user.telefono != null ? user.telefono! : '';
+          _aboutController.text = user != null && user.about != null ? user.about! : '';
 
-            return ListView(
+          return Form(
+            key: _formKey,
+            child: ListView(
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 32),
               children: [
-                Center(child: ProfilePictureWidget()),
+                Center(child: EditPictureWidget()),
                 SizedBox(height: 16),
                 TextFieldWidget(label: 'Nombre', controller: _nombreController),
                 TextFieldWidget(label: 'Apellido Materno', controller: _aPaternoController),
@@ -71,9 +70,9 @@ class EditProfilePage extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
               ],
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
