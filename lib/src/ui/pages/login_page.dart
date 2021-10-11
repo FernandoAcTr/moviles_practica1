@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/data/repositories/auth_repository.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);

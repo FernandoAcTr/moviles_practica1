@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
 import 'package:practica2/src/data/repositories/nota_repository.dart';
-import 'package:practica2/src/domain/models/nota.dart';
+import 'package:practica2/src/data/models/nota.dart';
 import 'package:practica2/src/ui/pages/notas/widgets/no_data_widget.dart';
 import 'package:practica2/src/ui/pages/notas/widgets/nota_widget.dart';
 
@@ -13,13 +13,13 @@ class NotasPage extends StatefulWidget {
 }
 
 class _NotasPageState extends State<NotasPage> {
-  late NotaService _dbHelper;
+  late NotaRepository _dbHelper;
   Future<List<Nota>>? _listNotas;
 
   @override
   void initState() {
     super.initState();
-    _dbHelper = NotaService();
+    _dbHelper = NotaRepository();
     _listNotas = _dbHelper.findAll();
   }
 
@@ -30,7 +30,10 @@ class _NotasPageState extends State<NotasPage> {
         title: Text('Gestión de notas'),
         brightness: Brightness.dark,
         actions: [
-          IconButton(onPressed: () => Navigator.pushNamed(context, Routes.agregar), icon: Icon(Icons.note_add)),
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, Routes.agregar).whenComplete(() => {setState(() {})}),
+            icon: Icon(Icons.note_add),
+          ),
         ],
       ),
       body: RefreshIndicator(

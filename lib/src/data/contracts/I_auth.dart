@@ -1,4 +1,4 @@
-import 'package:practica2/src/domain/models/user.dart';
+import 'package:practica2/src/data/models/user.dart';
 
 abstract class AbstractAuthRepository {
   Future<User?> login({required String email, required String password});

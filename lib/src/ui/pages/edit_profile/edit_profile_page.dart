@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
-import 'package:practica2/src/domain/models/user.dart';
+import 'package:practica2/src/data/models/user.dart';
 import 'package:practica2/src/ui/pages/edit_profile/widgets/edit_picture_widget.dart';
 import 'package:practica2/src/ui/pages/edit_profile/widgets/text_field_widget.dart';
 
@@ -57,12 +57,12 @@ class EditProfilePage extends StatelessWidget {
                   onPressed: () {
                     if (!_formKey.currentState!.validate()) return;
                     _authRepository.editProfile(
-                      nombre: _nombreController.text,
-                      aPaterno: _aPaternoController.text,
-                      aMaterno: _aMaternoController.text,
-                      email: _emailController.text,
-                      telefono: _telefonoController.text,
-                      about: _aboutController.text,
+                      nombre: _nombreController.text.trim(),
+                      aPaterno: _aPaternoController.text.trim(),
+                      aMaterno: _aMaternoController.text.trim(),
+                      email: _emailController.text.trim(),
+                      telefono: _telefonoController.text.trim(),
+                      about: _aboutController.text.trim(),
                     );
                     FocusScope.of(context).unfocus();
                     Navigator.of(context).pop();

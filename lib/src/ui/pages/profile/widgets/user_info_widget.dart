@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
-import 'package:practica2/src/domain/models/user.dart';
+import 'package:practica2/src/data/models/user.dart';
 
 class UserInfoWidget extends StatelessWidget {
   final _authRepository = AuthRepository();

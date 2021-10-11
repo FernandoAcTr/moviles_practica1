@@ -1,7 +1,7 @@
-import 'package:practica2/src/domain/contracts/I_db_repository.dart';
-import 'package:practica2/src/domain/models/nota.dart';
+import 'package:practica2/src/data/contracts/I_db_repository.dart';
+import 'package:practica2/src/data/models/nota.dart';
 
-class NotaService extends AbtractDBRepository {
+class NotaRepository extends AbtractDBRepository {
   Future<int> insert(Map<String, dynamic> row) async {
     final con = await database;
     return con!.insert(dbHelper.notasTable, row);

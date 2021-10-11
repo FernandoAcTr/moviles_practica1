@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/nota_repository.dart';
-import 'package:practica2/src/domain/models/nota.dart';
+import 'package:practica2/src/data/models/nota.dart';
 
 class AddNotePage extends StatefulWidget {
   const AddNotePage({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class AddNotePage extends StatefulWidget {
 }
 
 class _AddNotePageState extends State<AddNotePage> {
-  late NotaService _dbHelper;
+  late NotaRepository _dbHelper;
 
   final _controllerTitutlo = TextEditingController();
   final _controllerDetalle = TextEditingController();
@@ -22,7 +22,7 @@ class _AddNotePageState extends State<AddNotePage> {
   @override
   void initState() {
     super.initState();
-    _dbHelper = NotaService();
+    _dbHelper = NotaRepository();
   }
 
   @override

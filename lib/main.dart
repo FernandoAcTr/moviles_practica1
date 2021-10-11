@@ -12,7 +12,12 @@ import 'package:practica2/src/ui/pages/login_page.dart';
 import 'package:practica2/src/ui/pages/propinas/propinas_page.dart';
 import 'package:practica2/src/ui/theme.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  // final dbHelper = DBHelper();
+  // await dbHelper.initDatabase();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

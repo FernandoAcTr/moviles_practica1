@@ -22,12 +22,16 @@ class DBHelper {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, _nameDB);
 
-    return openDatabase(
+    return await openDatabase(
       path,
       version: _versionDB,
-      onCreate: (Database db, int version) {
-        _createNotasTable(db);
-        _createUserTable(db);
+      onCreate: (Database db, int version) async {
+        await _createNotasTable(db);
+        await _createUserTable(db);
+      },
+      onUpgrade: (Database db, int oldVersion, int newVersion) async {
+        await db.execute('DROP table $userTable');
+        await db.execute('DROP table $notasTable');
       },
     );
   }

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:practica2/src/data/database/db_helper.dart';
-import 'package:practica2/src/domain/contracts/I_auth.dart';
-import 'package:practica2/src/domain/models/user.dart';
+import 'package:practica2/src/data/contracts/I_auth.dart';
+import 'package:practica2/src/data/models/user.dart';
 
 class AuthRepository implements AbstractAuthRepository {
   final _dbHelper = DBHelper();

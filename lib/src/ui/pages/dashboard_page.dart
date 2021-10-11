@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
-import 'package:practica2/src/domain/models/user.dart';
+import 'package:practica2/src/data/models/user.dart';
 
 class DashboardPage extends StatelessWidget {
   final _authRepository = AuthRepository();
@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
             child: ListView(
               children: [
                 UserAccountsDrawerHeader(
-                  accountName: Text(user != null ? "${user.nombre} ${user.aPaterno} ${user.aPaterno}" : 'Tu Nombre'),
+                  accountName: Text(user != null ? "${user.nombre} ${user.aPaterno} ${user.aMaterno}" : 'Tu Nombre'),
                   accountEmail: Text(user != null ? "${user.email}" : 'Tu Email'),
                   currentAccountPicture: GestureDetector(
                     child: Hero(
