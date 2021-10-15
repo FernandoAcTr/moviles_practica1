@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/auth_controller.dart';
-import 'package:practica2/src/controllers/profile_controller.dart';
+import 'package:practica2/src/modules/auth/auth_controller.dart';
+import 'package:practica2/src/modules/profile/profile_controller.dart';
+import 'package:practica2/src/modules/profile/widgets/picture_widget.dart';
+import 'package:practica2/src/modules/profile/widgets/user_info_widget.dart';
 import 'package:practica2/src/routes/pages.dart';
-import 'package:practica2/src/ui/pages/profile/widgets/picture_widget.dart';
-import 'package:practica2/src/ui/pages/profile/widgets/user_info_widget.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   final authController = Get.find<AuthController>();

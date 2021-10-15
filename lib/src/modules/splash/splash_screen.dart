@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/ui/pages/login_page.dart';
+import 'package:practica2/src/modules/auth/login_page.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 class SplashScreen extends StatelessWidget {

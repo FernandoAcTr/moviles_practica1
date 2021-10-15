@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/notas_controller.dart';
+import 'package:practica2/src/modules/notas/notas_controller.dart';
 import 'package:practica2/src/data/models/nota.dart';
 
 class AddNotePage extends GetView<NotasController> {

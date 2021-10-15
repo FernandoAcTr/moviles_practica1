@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
-import 'package:practica2/src/bindings/movies_binding.dart';
-import 'package:practica2/src/bindings/notas_binding.dart';
-import 'package:practica2/src/bindings/profile_binding.dart';
-import 'package:practica2/src/ui/pages/dashboard_page.dart';
-import 'package:practica2/src/ui/pages/intenciones/intenciones_page.dart';
-import 'package:practica2/src/ui/pages/login_page.dart';
-import 'package:practica2/src/ui/pages/movies/detail_movie_page.dart';
-import 'package:practica2/src/ui/pages/movies/movies_page.dart';
-import 'package:practica2/src/ui/pages/notas/add_note_page.dart';
-import 'package:practica2/src/ui/pages/notas/notas_page.dart';
-import 'package:practica2/src/ui/pages/profile/edit_profile_page.dart';
-import 'package:practica2/src/ui/pages/profile/profile_page.dart';
-import 'package:practica2/src/ui/pages/propinas/propinas_page.dart';
-import 'package:practica2/src/ui/pages/splash_screen.dart';
+import 'package:practica2/src/modules/movies/movies_binding.dart';
+import 'package:practica2/src/modules/notas/notas_binding.dart';
+import 'package:practica2/src/modules/profile/profile_binding.dart';
+import 'package:practica2/src/modules/dashboard/dashboard_page.dart';
+import 'package:practica2/src/modules/auth/login_page.dart';
+import 'package:practica2/src/modules/intenciones/intenciones_page.dart';
+import 'package:practica2/src/modules/movies/detail_movie_page.dart';
+import 'package:practica2/src/modules/movies/movies_page.dart';
+import 'package:practica2/src/modules/notas/add_note_page.dart';
+import 'package:practica2/src/modules/notas/notas_page.dart';
+import 'package:practica2/src/modules/profile/edit_profile_page.dart';
+import 'package:practica2/src/modules/profile/profile_page.dart';
+import 'package:practica2/src/modules/propinas/propinas_page.dart';
+import 'package:practica2/src/modules/splash/splash_screen.dart';
 part './routes.dart';
 
 abstract class AppPages {

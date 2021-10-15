@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/auth_controller.dart';
-import 'package:practica2/src/controllers/profile_controller.dart';
-import 'package:practica2/src/ui/pages/profile/widgets/edit_picture_widget.dart';
-import 'package:practica2/src/ui/pages/profile/widgets/text_field_widget.dart';
+import 'package:practica2/src/modules/auth/auth_controller.dart';
+import 'package:practica2/src/modules/profile/profile_controller.dart';
+import 'package:practica2/src/modules/profile/widgets/edit_picture_widget.dart';
+import 'package:practica2/src/modules/profile/widgets/text_field_widget.dart';
 
 class EditProfilePage extends GetView<ProfileController> {
   final _formKey = GlobalKey<FormState>();

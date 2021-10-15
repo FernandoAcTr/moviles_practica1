@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/auth_controller.dart';
-import 'package:practica2/src/controllers/profile_controller.dart';
+import 'package:practica2/src/modules/auth/auth_controller.dart';
+import 'package:practica2/src/modules/profile/profile_controller.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
 import 'package:practica2/src/device/ImageSelector.dart';
 

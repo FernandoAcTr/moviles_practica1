@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:practica2/src/controllers/movies_controller.dart';
+import 'package:practica2/src/modules/movies/movies_controller.dart';
 import 'package:practica2/src/data/models/movie.dart';
-import 'package:practica2/src/ui/pages/movies/widgets/card_movie.dart';
+import 'package:practica2/src/modules/movies/widgets/card_movie.dart';
 
 class MoviesPage extends GetView<MoviesController> {
   @override

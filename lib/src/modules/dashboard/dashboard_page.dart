@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/auth_controller.dart';
+import 'package:practica2/src/modules/auth/auth_controller.dart';
 import 'package:practica2/src/data/models/user.dart';
 import 'package:practica2/src/routes/pages.dart';
 

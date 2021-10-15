@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/notas_controller.dart';
+import 'package:practica2/src/modules/notas/notas_controller.dart';
 import 'package:practica2/src/data/models/nota.dart';
+import 'package:practica2/src/modules/notas/widgets/no_data_widget.dart';
+import 'package:practica2/src/modules/notas/widgets/nota_widget.dart';
 import 'package:practica2/src/routes/pages.dart';
-import 'package:practica2/src/ui/pages/notas/widgets/no_data_widget.dart';
-import 'package:practica2/src/ui/pages/notas/widgets/nota_widget.dart';
 
 class NotasPage extends GetView<NotasController> {
   @override

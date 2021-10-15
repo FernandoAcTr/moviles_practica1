@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:practica2/src/controllers/auth_controller.dart';
+import 'package:practica2/src/modules/auth/auth_controller.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
 import 'package:practica2/src/device/ImageSelector.dart';
 

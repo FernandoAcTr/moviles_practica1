@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/ui/pages/intenciones/widgets/card_option_widget.dart';
+import 'package:practica2/src/modules/intenciones/widgets/card_option_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class IntencionesPage extends StatelessWidget {
