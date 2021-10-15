@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/data/repositories/auth_repository.dart';
-import 'package:practica2/src/data/models/user.dart';
+import 'package:get/get.dart';
+import 'package:practica2/src/controllers/auth_controller.dart';
+import 'package:practica2/src/controllers/profile_controller.dart';
 import 'package:practica2/src/ui/pages/profile/widgets/edit_picture_widget.dart';
 import 'package:practica2/src/ui/pages/profile/widgets/text_field_widget.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends GetView<ProfileController> {
   final _formKey = GlobalKey<FormState>();
 
   final _nombreController = TextEditingController();
@@ -13,26 +14,25 @@ class EditProfilePage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _telefonoController = TextEditingController();
   final _aboutController = TextEditingController();
-  final _authRepository = AuthRepository();
+
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black54),
-      ),
-      body: FutureBuilder(
-        future: _authRepository.currentUser,
-        builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-          final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
-          _nombreController.text = user != null && user.nombre != null ? user.nombre! : '';
-          _aPaternoController.text = user != null && user.aPaterno != null ? user.aPaterno! : '';
-          _aMaternoController.text = user != null && user.aMaterno != null ? user.aMaterno! : '';
-          _emailController.text = user != null && user.email != null ? user.email! : '';
-          _telefonoController.text = user != null && user.telefono != null ? user.telefono! : '';
-          _aboutController.text = user != null && user.about != null ? user.about! : '';
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color: Colors.black54),
+        ),
+        body: Obx(() {
+          final user = authController.user;
+          _nombreController.text = user?.nombre ?? '';
+          _aPaternoController.text = user?.aPaterno ?? '';
+          _aMaternoController.text = user?.aMaterno ?? '';
+          _emailController.text = user?.email ?? '';
+          _telefonoController.text = user?.telefono ?? '';
+          _aboutController.text = user?.about ?? '';
 
           return Form(
             key: _formKey,
@@ -56,7 +56,7 @@ class EditProfilePage extends StatelessWidget {
                   child: Text('Guardar'),
                   onPressed: () {
                     if (!_formKey.currentState!.validate()) return;
-                    _authRepository.editProfile(
+                    controller.editProfile(
                       nombre: _nombreController.text.trim(),
                       aPaterno: _aPaternoController.text.trim(),
                       aMaterno: _aMaternoController.text.trim(),
@@ -72,8 +72,6 @@ class EditProfilePage extends StatelessWidget {
               ],
             ),
           );
-        },
-      ),
-    );
+        }));
   }
 }

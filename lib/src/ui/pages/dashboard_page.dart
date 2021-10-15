@@ -1,25 +1,24 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:practica2/routes.dart';
-import 'package:practica2/src/data/repositories/auth_repository.dart';
+import 'package:get/get.dart';
+import 'package:practica2/src/controllers/auth_controller.dart';
 import 'package:practica2/src/data/models/user.dart';
+import 'package:practica2/src/routes/pages.dart';
 
 class DashboardPage extends StatelessWidget {
-  final _authRepository = AuthRepository();
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('DASHBOARD'),
-        backgroundColor: Theme.of(context).primaryColor,
-        brightness: Brightness.dark,
-      ),
-      drawer: FutureBuilder(
-        future: _authRepository.currentUser,
-        builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-          final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
+        appBar: AppBar(
+          title: Text('DASHBOARD'),
+          backgroundColor: Theme.of(context).primaryColor,
+          brightness: Brightness.dark,
+        ),
+        drawer: Obx(() {
+          final user = authController.user;
           return Drawer(
             child: ListView(
               children: [
@@ -33,7 +32,7 @@ class DashboardPage extends StatelessWidget {
                         backgroundImage: _getImage(user),
                       ),
                     ),
-                    onTap: () => Navigator.pushNamed(context, Routes.profile),
+                    onTap: () => Navigator.pushNamed(context, Routes.PROFILE),
                   ),
                 ),
                 ListTile(
@@ -43,7 +42,7 @@ class DashboardPage extends StatelessWidget {
                   trailing: Icon(Icons.chevron_right),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, Routes.propinas);
+                    Navigator.pushNamed(context, Routes.PROPINAS);
                   },
                 ),
                 ListTile(
@@ -53,7 +52,7 @@ class DashboardPage extends StatelessWidget {
                   trailing: Icon(Icons.chevron_right),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, Routes.intenciones);
+                    Navigator.pushNamed(context, Routes.INTENCIONES);
                   },
                 ),
                 ListTile(
@@ -63,7 +62,7 @@ class DashboardPage extends StatelessWidget {
                   trailing: Icon(Icons.chevron_right),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, Routes.notas);
+                    Navigator.pushNamed(context, Routes.NOTAS);
                   },
                 ),
                 ListTile(
@@ -73,15 +72,13 @@ class DashboardPage extends StatelessWidget {
                   trailing: Icon(Icons.chevron_right),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, Routes.movies);
+                    Navigator.pushNamed(context, Routes.MOVIES);
                   },
                 ),
               ],
             ),
           );
-        },
-      ),
-    );
+        }));
   }
 
   _getImage(User? user) => user?.foto != null ? FileImage(File(user!.foto!)) : AssetImage('assets/no-foto.jpg');

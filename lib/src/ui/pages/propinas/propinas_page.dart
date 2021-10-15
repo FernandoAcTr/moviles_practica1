@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Propinas extends StatelessWidget {
+class PropinasPage extends StatelessWidget {
   final _propinaController = TextEditingController();
 
   @override

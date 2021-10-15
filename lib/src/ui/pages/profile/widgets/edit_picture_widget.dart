@@ -1,19 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:practica2/src/data/repositories/auth_repository.dart';
-import 'package:practica2/src/device/ImageSelector.dart';
+import 'package:get/get.dart';
+import 'package:practica2/src/controllers/auth_controller.dart';
+import 'package:practica2/src/controllers/profile_controller.dart';
 import 'package:practica2/src/data/models/user.dart';
 
-class EditPictureWidget extends StatefulWidget {
-  @override
-  _EditPictureWidgetState createState() => _EditPictureWidgetState();
-}
-
-class _EditPictureWidgetState extends State<EditPictureWidget> {
-  final _authRepository = AuthRepository();
-  final _imageSelector = ImageSelector();
-  File? file;
+class EditPictureWidget extends GetView<ProfileController> {
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +26,7 @@ class _EditPictureWidgetState extends State<EditPictureWidget> {
       child: _buildCircle(
         child: _buildCircle(
           child: InkWell(
-            onTap: () async {
-              file = await _imageSelector.showSelectionDialog(context);
-              if (file != null) _authRepository.editProfile(foto: file!.path);
-              setState(() {});
-            },
+            onTap: () => controller.pickImage(context),
             child: Icon(
               Icons.photo_camera_outlined,
               size: 20,
@@ -53,17 +43,12 @@ class _EditPictureWidgetState extends State<EditPictureWidget> {
   }
 
   Widget _buildProfilePicture() {
-    return FutureBuilder(
-      future: _authRepository.currentUser,
-      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-        final user = snapshot.hasData && snapshot.data != null ? snapshot.data : null;
-
-        return Hero(
+    return Obx(() => Hero(
           tag: 'avatar',
           child: ClipOval(
             child: Material(
               child: Ink.image(
-                image: getImage(user),
+                image: getImage(authController.user),
                 fit: BoxFit.cover,
                 width: 128,
                 height: 128,
@@ -71,9 +56,7 @@ class _EditPictureWidgetState extends State<EditPictureWidget> {
               ),
             ),
           ),
-        );
-      },
-    );
+        ));
   }
 
   Widget _buildCircle({
@@ -91,9 +74,8 @@ class _EditPictureWidgetState extends State<EditPictureWidget> {
   }
 
   getImage(User? user) {
-    if (file != null) return FileImage(file!);
+    if (controller.pickedImage != null) return FileImage(controller.pickedImage!);
     if (user?.foto != null) return FileImage(File(user!.foto!));
-
     return AssetImage('assets/no-foto.jpg');
   }
 }

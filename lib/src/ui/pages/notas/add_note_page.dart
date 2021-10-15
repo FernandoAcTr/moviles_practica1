@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/data/repositories/nota_repository.dart';
+import 'package:get/get.dart';
+import 'package:practica2/src/controllers/notas_controller.dart';
 import 'package:practica2/src/data/models/nota.dart';
 
-class AddNotePage extends StatefulWidget {
-  const AddNotePage({Key? key}) : super(key: key);
-
-  @override
-  _AddNotePageState createState() => _AddNotePageState();
-}
-
-class _AddNotePageState extends State<AddNotePage> {
-  late NotaRepository _dbHelper;
-
+class AddNotePage extends GetView<NotasController> {
   final _controllerTitutlo = TextEditingController();
   final _controllerDetalle = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  bool editing = false;
-  Nota? oldNote;
-
-  @override
-  void initState() {
-    super.initState();
-    _dbHelper = NotaRepository();
-  }
-
   @override
   Widget build(BuildContext context) {
     final arguments = ModalRoute.of(context)?.settings.arguments;
+    bool editing = false;
+    Nota? oldNote;
 
     if (arguments != null) {
       oldNote = arguments as Nota;
-      _controllerDetalle.text = oldNote!.detalle!;
-      _controllerTitutlo.text = oldNote!.titulo!;
+      _controllerDetalle.text = oldNote.detalle!;
+      _controllerTitutlo.text = oldNote.titulo!;
       editing = true;
     }
 
@@ -54,7 +39,6 @@ class _AddNotePageState extends State<AddNotePage> {
                 ),
                 controller: _controllerTitutlo,
                 validator: (value) {
-                  print(value?.isEmpty);
                   if (value?.isEmpty == true) return 'El campo es obligatorio';
                 },
               ),
@@ -78,22 +62,12 @@ class _AddNotePageState extends State<AddNotePage> {
 
                   if (!_formKey.currentState!.validate()) return;
 
-                  int result = 0;
-                  if (!editing) {
-                    final newNote = Nota(titulo: titulo, detalle: detalle);
-                    result = await _dbHelper.insert(newNote.toMap());
-                  } else {
-                    oldNote!.titulo = titulo;
-                    oldNote!.detalle = detalle;
-                    result = await _dbHelper.update(oldNote!.toMap());
-                  }
+                  if (editing)
+                    controller.updateNote(oldNote!.copyWith(titulo: titulo, detalle: detalle));
+                  else
+                    controller.addNote(Nota(titulo: titulo, detalle: detalle));
 
-                  if (result > 0) {
-                    Navigator.pop(context);
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text('Ocurrió un error al agregar la nota')));
-                  }
+                  Get.back();
                 },
                 child: Text('Guardar Nota'),
               )

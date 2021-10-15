@@ -27,7 +27,7 @@ class AuthRepository implements AbstractAuthRepository {
   }
 
   @override
-  Future<void> editProfile({
+  Future<User> editProfile({
     String? nombre,
     String? aPaterno,
     String? aMaterno,
@@ -65,5 +65,6 @@ class AuthRepository implements AbstractAuthRepository {
       );
       await db!.update(_dbHelper.userTable, user.toMap(), where: 'id = ?', whereArgs: [user.id]);
     }
+    return user;
   }
 }

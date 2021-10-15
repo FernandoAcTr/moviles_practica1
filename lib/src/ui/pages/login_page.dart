@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/routes.dart';
+import 'package:practica2/src/routes/pages.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               setState(() {
                 _loading = false;
               });
-              Navigator.pushReplacementNamed(context, Routes.dashboard);
+              Navigator.pushReplacementNamed(context, Routes.DASHBOARD);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

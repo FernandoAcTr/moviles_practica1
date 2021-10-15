@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/routes.dart';
-import 'package:practica2/src/data/repositories/nota_repository.dart';
+import 'package:get/get.dart';
+import 'package:practica2/src/controllers/notas_controller.dart';
 import 'package:practica2/src/data/models/nota.dart';
+import 'package:practica2/src/routes/pages.dart';
 import 'package:practica2/src/ui/pages/notas/widgets/no_data_widget.dart';
 import 'package:practica2/src/ui/pages/notas/widgets/nota_widget.dart';
 
-class NotasPage extends StatefulWidget {
-  const NotasPage({Key? key}) : super(key: key);
-
-  @override
-  _NotasPageState createState() => _NotasPageState();
-}
-
-class _NotasPageState extends State<NotasPage> {
-  late NotaRepository _dbHelper;
-  Future<List<Nota>>? _listNotas;
-
-  @override
-  void initState() {
-    super.initState();
-    _dbHelper = NotaRepository();
-    _listNotas = _dbHelper.findAll();
-  }
-
+class NotasPage extends GetView<NotasController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,34 +15,20 @@ class _NotasPageState extends State<NotasPage> {
         brightness: Brightness.dark,
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, Routes.agregar).whenComplete(() => {setState(() {})}),
+            onPressed: () => Get.toNamed(Routes.AGREGAR_NOTA),
             icon: Icon(Icons.note_add),
           ),
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          setState(() {
-            _listNotas = _dbHelper.findAll();
-          });
-        },
-        child: FutureBuilder(
-          future: _listNotas,
-          builder: (context, AsyncSnapshot<List<Nota>> snapshot) {
-            if (snapshot.hasError) {
-              return Center(child: Text('Ha ocurrido un error'));
-            }
+          onRefresh: () async => controller.fetchNotes(),
+          child: Obx(() {
+            if (controller.loading) return Center(child: CircularProgressIndicator());
 
-            if (snapshot.connectionState != ConnectionState.done) {
-              return Center(child: CircularProgressIndicator());
-            }
+            if (controller.notas.isEmpty) return NoDataWidget();
 
-            if (snapshot.data!.isEmpty) return NoDataWidget();
-
-            return _notasList(snapshot.data!);
-          },
-        ),
-      ),
+            return _notasList(controller.notas);
+          })),
     );
   }
 
@@ -72,10 +42,7 @@ class _NotasPageState extends State<NotasPage> {
           index: index,
           nota: nota,
           onDismissed: (direction) {
-            _dbHelper.delete(nota.id!);
-            setState(() {
-              _listNotas = _dbHelper.findAll();
-            });
+            controller.deleteNote(nota);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text("Nota eliminada")),
             );

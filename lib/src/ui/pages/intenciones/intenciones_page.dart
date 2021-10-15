@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practica2/src/ui/pages/intenciones/widgets/card_option_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Intenciones extends StatefulWidget {
-  const Intenciones({Key? key}) : super(key: key);
-
-  @override
-  _IntencionesState createState() => _IntencionesState();
-}
-
-class _IntencionesState extends State<Intenciones> {
+class IntencionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

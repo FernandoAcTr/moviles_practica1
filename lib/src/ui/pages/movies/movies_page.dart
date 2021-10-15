@@ -1,41 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/data/services/movie_service.dart';
+import 'package:get/state_manager.dart';
+import 'package:practica2/src/controllers/movies_controller.dart';
 import 'package:practica2/src/data/models/movie.dart';
 import 'package:practica2/src/ui/pages/movies/widgets/card_movie.dart';
 
-class MoviesPage extends StatefulWidget {
-  const MoviesPage({Key? key}) : super(key: key);
-
-  @override
-  _MoviesPageState createState() => _MoviesPageState();
-}
-
-class _MoviesPageState extends State<MoviesPage> {
-  final MovieService _movieService = MovieService();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class MoviesPage extends GetView<MoviesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Películas más populares'),
       ),
-      body: FutureBuilder(
-        future: _movieService.getAllMovies(),
-        builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
-          if (snapshot.hasError) return Center(child: Text('Ha habido un error en la petición'));
-          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+      body: Obx(() {
+        if (controller.error) return Center(child: Text('Ha habido un error en la petición'));
+        if (controller.loading) return Center(child: CircularProgressIndicator());
 
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _moviesList(snapshot.data!),
-          );
-        },
-      ),
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _moviesList(controller.moviesList),
+        );
+      }),
     );
   }
 
@@ -46,7 +30,7 @@ class _MoviesPageState extends State<MoviesPage> {
         return Divider(height: 10);
       },
       itemBuilder: (context, index) {
-        return CardWidget(movie: movies[index]);
+        return CardMovie(movie: movies[index]);
       },
     );
   }

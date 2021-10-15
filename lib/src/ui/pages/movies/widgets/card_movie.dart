@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/routes.dart';
 import 'package:practica2/src/data/models/movie.dart';
+import 'package:practica2/src/routes/pages.dart';
 
-class CardWidget extends StatelessWidget {
+class CardMovie extends StatelessWidget {
   final Movie movie;
 
-  const CardWidget({
+  const CardMovie({
     Key? key,
     required this.movie,
   }) : super(key: key);
@@ -15,12 +15,12 @@ class CardWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(20.0),
         boxShadow: [
           BoxShadow(
             color: Colors.black45,
-            offset: Offset(0, 7.0),
-            blurRadius: 2.5,
+            offset: Offset(0, 8),
+            blurRadius: 10,
           )
         ],
       ),
@@ -44,7 +44,7 @@ class CardWidget extends StatelessWidget {
                 children: [
                   Text("${movie.title}", style: TextStyle(color: Colors.white, fontSize: 14)),
                   IconButton(
-                    onPressed: () => Navigator.of(context).pushNamed(Routes.detailsMovie, arguments: movie),
+                    onPressed: () => Navigator.of(context).pushNamed(Routes.DETAILS_MOVIE, arguments: movie),
                     icon: Icon(Icons.chevron_right, color: Colors.white),
                   )
                 ],

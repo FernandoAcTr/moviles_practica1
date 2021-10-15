@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/routes.dart';
+import 'package:practica2/src/routes/pages.dart';
 
 typedef void DismissCallback(DismissDirection direction);
 
@@ -17,7 +17,7 @@ class NotaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(index.toString()),
+      key: Key(DateTime.now().millisecond.toString()),
       background: Container(
         color: Colors.red,
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -30,7 +30,7 @@ class NotaWidget extends StatelessWidget {
           subtitle: Text(nota.detalle!),
           trailing: IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () => Navigator.pushNamed(context, Routes.agregar, arguments: nota),
+            onPressed: () => Navigator.pushNamed(context, Routes.AGREGAR_NOTA, arguments: nota),
           ),
         ),
       ),

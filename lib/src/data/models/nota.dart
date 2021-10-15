@@ -26,4 +26,16 @@ class Nota {
         "titulo": titulo,
         "detalle": detalle,
       };
+
+  Nota copyWith({
+    int? id,
+    String? titulo,
+    String? detalle,
+  }) {
+    return Nota(
+      id: id ?? this.id,
+      titulo: titulo ?? this.titulo,
+      detalle: detalle ?? this.detalle,
+    );
+  }
 }
