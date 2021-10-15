@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/src/data/repositories/auth_repository.dart';
 import 'package:practica2/src/data/models/user.dart';
-import 'package:practica2/src/ui/pages/edit_profile/widgets/edit_picture_widget.dart';
-import 'package:practica2/src/ui/pages/edit_profile/widgets/text_field_widget.dart';
+import 'package:practica2/src/ui/pages/profile/widgets/edit_picture_widget.dart';
+import 'package:practica2/src/ui/pages/profile/widgets/text_field_widget.dart';
 
 class EditProfilePage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

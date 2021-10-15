@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/routes.dart';
-import 'package:practica2/src/ui/pages/add_note/add_note_page.dart';
-import 'package:practica2/src/ui/pages/edit_profile/edit_profile_page.dart';
+import 'package:practica2/src/ui/pages/movies/detail_movie_page.dart';
+import 'package:practica2/src/ui/pages/notas/add_note_page.dart';
+import 'package:practica2/src/ui/pages/profile/edit_profile_page.dart';
 import 'package:practica2/src/ui/pages/intenciones/intenciones_page.dart';
 import 'package:practica2/src/ui/pages/movies/movies_page.dart';
 import 'package:practica2/src/ui/pages/notas/notas_page.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         Routes.profile: (_) => ProfilePage(),
         Routes.editProfile: (_) => EditProfilePage(),
         Routes.movies: (_) => MoviesPage(),
+        Routes.detailsMovie: (_) => DetailMoviePage(),
       },
     );
   }

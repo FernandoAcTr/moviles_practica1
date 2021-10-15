@@ -9,4 +9,5 @@ class Routes {
   static final profile = 'profile';
   static final editProfile = 'edit_profile';
   static final movies = 'movies';
+  static final detailsMovie = 'details_movie';
 }

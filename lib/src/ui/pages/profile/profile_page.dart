@@ -14,11 +14,13 @@ class ProfilePage extends StatelessWidget {
         automaticallyImplyLeading: true,
         brightness: Brightness.dark,
       ),
-      body: Stack(
-        children: [
-          _buildBackground(context),
-          _buildInfoLayer(context),
-        ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            _buildBackground(context),
+            _buildInfoLayer(context),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, Routes.editProfile),
@@ -43,7 +45,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Column _buildBackground(BuildContext context) {
+  Widget _buildBackground(BuildContext context) {
     return Column(
       children: [
         Container(

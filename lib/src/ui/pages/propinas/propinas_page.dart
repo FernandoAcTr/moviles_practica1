@@ -25,12 +25,16 @@ class Propinas extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                final consumo = double.parse(_propinaController.text);
-                final propina = consumo * 1.16;
-                showDialog(
-                  context: context,
-                  builder: (_) => createDialog(propina),
-                );
+                try {
+                  final consumo = double.parse(_propinaController.text);
+                  final propina = consumo * 1.16;
+                  showDialog(
+                    context: context,
+                    builder: (_) => createDialog('Propina', 'El total a pagar es \$${propina.toStringAsFixed(2)}'),
+                  );
+                } catch (e) {
+                  showDialog(context: context, builder: (_) => createDialog('Error', 'Entrada incorrecta'));
+                }
               },
               child: Text('Calcular'),
             )
@@ -40,10 +44,10 @@ class Propinas extends StatelessWidget {
     );
   }
 
-  Widget createDialog(double propina) {
+  Widget createDialog(String title, String subtitle) {
     return AlertDialog(
-      title: Text('Propina'),
-      content: Text('El total a pagar es \$${propina.toStringAsFixed(2)}'),
+      title: Text(title),
+      content: Text(subtitle),
     );
   }
 }
