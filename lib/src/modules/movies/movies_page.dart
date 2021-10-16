@@ -3,6 +3,7 @@ import 'package:get/state_manager.dart';
 import 'package:practica2/src/modules/movies/movies_controller.dart';
 import 'package:practica2/src/modules/movies/widgets/card_movie.dart';
 import 'package:practica2/src/modules/movies/widgets/card_swiper.dart';
+import 'package:practica2/src/modules/movies/widgets/search_movie.dart';
 import 'package:practica2/src/routes/pages.dart';
 import 'package:practica2/src/widgets/no_data_widget.dart';
 
@@ -17,7 +18,7 @@ class MoviesPage extends GetView<MoviesController> {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () => showSearch(context: context, delegate: SearchMovie()),
           )
         ],
       ),
@@ -55,9 +56,14 @@ class MoviesPage extends GetView<MoviesController> {
       itemCount: controller.popularMovies.length,
       itemBuilder: (context, index) {
         final movie = controller.popularMovies[index];
+        movie.uniqueid = '${movie.id}-listview';
+
         return GestureDetector(
           onTap: () => Navigator.of(context).pushNamed(Routes.DETAILS_MOVIE, arguments: movie),
-          child: CardMovie(movie: movie),
+          child: Hero(
+            tag: movie.uniqueid!,
+            child: CardMovie(movie: movie),
+          ),
         );
       },
     );

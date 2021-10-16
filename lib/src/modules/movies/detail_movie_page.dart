@@ -32,19 +32,22 @@ class DetailMoviePage extends GetView<MoviesController> {
       children: [
         Container(
           height: screen.height * 0.55,
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: ClipRRect(
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/loading.gif',
-                image: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                fit: BoxFit.cover,
-                fadeInDuration: Duration(milliseconds: 100),
+          child: Hero(
+            tag: movie.uniqueid!,
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-              borderRadius: BorderRadius.circular(10.0),
+              child: ClipRRect(
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/loading.gif',
+                  image: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                  fit: BoxFit.cover,
+                  fadeInDuration: Duration(milliseconds: 100),
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
             ),
           ),
         ),
@@ -56,7 +59,7 @@ class DetailMoviePage extends GetView<MoviesController> {
               width: screen.width * 0.6,
               child: Text(movie.title!,
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 24,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   )),
@@ -83,7 +86,7 @@ class DetailMoviePage extends GetView<MoviesController> {
             if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
 
             return Container(
-              height: 170,
+              height: 180,
               child: CastList(cast: snapshot.data!),
             );
           },

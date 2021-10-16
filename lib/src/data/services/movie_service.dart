@@ -8,9 +8,6 @@ class MovieService {
   // final apiKey = 'e2dc6a6246da72420a469e4a398c0874';
   final apiKey = '2ea8ea675bd5a34a75e9428ca22adc65';
 
-  // Cast enpoint
-  // https://api.themoviedb.org/3/movie/580489/credits?api_key=2ea8ea675bd5a34a75e9428ca22adc65&language=es-MX&page=1
-
   Future<List<Movie>> getPopularMovies() async {
     final url = 'https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=es-MX&page=1';
     final response = await http.get(Uri.parse(url));
@@ -30,5 +27,12 @@ class MovieService {
     final response = await http.get(Uri.parse(url));
     final json = jsonDecode(response.body);
     return List<Actor>.from(json['cast'].map((x) => Actor.fromMap(x)));
+  }
+
+  Future<List<Movie>> searchMovie(String query) async {
+    final url = 'https://api.themoviedb.org/3/search/movie?api_key=$apiKey&language=es-MX&page=1&include_adult=true&query=$query';
+    final response = await http.get(Uri.parse(url));
+    final json = jsonDecode(response.body);
+    return List<Movie>.from(json["results"].map((x) => Movie.fromMap(x)));
   }
 }
