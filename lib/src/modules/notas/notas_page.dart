@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practica2/src/modules/notas/notas_controller.dart';
 import 'package:practica2/src/data/models/nota.dart';
-import 'package:practica2/src/modules/notas/widgets/no_data_widget.dart';
+import 'package:practica2/src/widgets/no_data_widget.dart';
 import 'package:practica2/src/modules/notas/widgets/nota_widget.dart';
 import 'package:practica2/src/routes/pages.dart';
 
@@ -25,7 +25,7 @@ class NotasPage extends GetView<NotasController> {
           child: Obx(() {
             if (controller.loading) return Center(child: CircularProgressIndicator());
 
-            if (controller.notas.isEmpty) return NoDataWidget();
+            if (controller.notas.isEmpty) return NoDataWidget(text: 'Sin Notas agregadas aún');
 
             return _notasList(controller.notas);
           })),

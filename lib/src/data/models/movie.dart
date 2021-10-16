@@ -51,4 +51,12 @@ class Movie {
         voteAverage: json["vote_average"] != null ? double.parse(json["vote_average"].toString()) : null,
         voteCount: json["vote_count"],
       );
+
+  String get fullPosterPath => posterPath == null
+      ? 'https://www.bridgiot.co.za/wp-content/uploads/2018/12/1024x1024-no-image-available.png'
+      : 'https://image.tmdb.org/t/p/w500/$posterPath';
+
+  String get getBackgroundImage => backdropPath == null
+      ? 'https://www.bridgiot.co.za/wp-content/uploads/2018/12/1024x1024-no-image-available.png'
+      : 'https://image.tmdb.org/t/p/w500/$backdropPath';
 }

@@ -8,7 +8,8 @@ class MoviesController extends GetxController {
   MoviesController({required this.movieService});
 
   //state
-  final List<Movie> moviesList = <Movie>[].obs;
+  final List<Movie> popularMovies = <Movie>[].obs;
+  final List<Movie> cinemaMovies = <Movie>[].obs;
   final _loading = false.obs;
   final _error = false.obs;
 
@@ -24,8 +25,10 @@ class MoviesController extends GetxController {
   void fetchMovies() async {
     _loading.value = true;
     try {
-      final movies = await movieService.getAllMovies();
-      moviesList.assignAll(movies);
+      final popular = await movieService.getPopularMovies();
+      final cinemas = await movieService.getInCinemas();
+      popularMovies.assignAll(popular);
+      cinemaMovies.assignAll(cinemas);
     } catch (e) {
       print(e);
       _error.value = true;
