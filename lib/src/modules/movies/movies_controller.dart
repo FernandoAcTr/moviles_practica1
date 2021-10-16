@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:practica2/src/data/models/movie.dart';
+import 'package:practica2/src/data/models/actor.dart';
 import 'package:practica2/src/data/services/movie_service.dart';
 
 class MoviesController extends GetxController {
@@ -34,5 +35,9 @@ class MoviesController extends GetxController {
       _error.value = true;
     }
     _loading.value = false;
+  }
+
+  Future<List<Actor>> getCast(String movieId) {
+    return movieService.getCast(movieId);
   }
 }
