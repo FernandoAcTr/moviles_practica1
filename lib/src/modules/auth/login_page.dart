@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               setState(() {
                 _loading = true;
               });
-              await Future.delayed(Duration(seconds: 2));
+              await Future.delayed(Duration(seconds: 1));
               setState(() {
                 _loading = false;
               });

@@ -11,7 +11,7 @@ class Movie {
   String? overview;
   double? popularity;
   String? posterPath;
-  DateTime? releaseDate;
+  String? releaseDate;
   String? title;
   bool? video;
   double? voteAverage;
@@ -46,19 +46,29 @@ class Movie {
         overview: json["overview"],
         popularity: json["popularity"],
         posterPath: json["poster_path"],
-        releaseDate:
-            json["release_date"] != "" && json["release_date"] != null ? DateTime.parse(json["release_date"]) : null,
+        releaseDate: json["release_date"],
         title: json["title"],
         video: json["video"],
         voteAverage: json["vote_average"] != null ? double.parse(json["vote_average"].toString()) : null,
         voteCount: json["vote_count"],
       );
 
+  Map<String, dynamic> toMap() => {
+        "backdrop_path": backdropPath,
+        "id": id,
+        "overview": overview,
+        "poster_path": posterPath,
+        "release_date": releaseDate,
+        "title": title,
+        // "video": video,
+        "vote_average": voteAverage,
+      };
+
   String get fullPosterPath => posterPath == null
       ? 'https://www.bridgiot.co.za/wp-content/uploads/2018/12/1024x1024-no-image-available.png'
       : 'https://image.tmdb.org/t/p/w500/$posterPath';
 
-  String get getBackgroundImage => backdropPath == null
+  String get fullBackdropPath => backdropPath == null
       ? 'https://www.bridgiot.co.za/wp-content/uploads/2018/12/1024x1024-no-image-available.png'
       : 'https://image.tmdb.org/t/p/w500/$backdropPath';
 }

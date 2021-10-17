@@ -1,7 +1,7 @@
 import 'package:practica2/src/data/database/db_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class AbtractDBRepository {
+abstract class AbstractDBRepository {
   DBHelper dbHelper = DBHelper();
   Future<Database?> get database => dbHelper.database;
 
@@ -9,5 +9,5 @@ abstract class AbtractDBRepository {
   Future<int> update(Map<String, dynamic> row);
   Future<int> delete(int id);
   Future<List<Object>> findAll();
-  Future<Object> findOne(int id);
+  Future<Object?> findOne(int id);
 }

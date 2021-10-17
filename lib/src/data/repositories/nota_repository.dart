@@ -1,7 +1,7 @@
 import 'package:practica2/src/data/contracts/I_db_repository.dart';
 import 'package:practica2/src/data/models/nota.dart';
 
-class NotaRepository extends AbtractDBRepository {
+class NotaRepository extends AbstractDBRepository {
   Future<int> insert(Map<String, dynamic> row) async {
     final con = await database;
     return con!.insert(dbHelper.notasTable, row);
@@ -23,7 +23,7 @@ class NotaRepository extends AbtractDBRepository {
     return result.map<Nota>((mapa) => Nota.fromMap(mapa)).toList();
   }
 
-  Future<Nota> findOne(int id) async {
+  Future<Nota?> findOne(int id) async {
     final con = await database;
     final result = await con!.query(dbHelper.notasTable, where: 'id = ?', whereArgs: [id]);
 
