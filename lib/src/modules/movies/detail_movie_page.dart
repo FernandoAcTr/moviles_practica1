@@ -1,12 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 import 'package:practica2/src/data/models/actor.dart';
 import 'package:practica2/src/data/models/movie.dart';
 import 'package:practica2/src/modules/movies/movies_controller.dart';
 import 'package:practica2/src/modules/movies/widgets/cast_list.dart';
 import 'package:practica2/src/modules/movies/widgets/like_button.dart';
+import 'package:practica2/src/routes/pages.dart';
 
 class DetailMoviePage extends GetView<MoviesController> {
   @override
@@ -75,10 +76,15 @@ class DetailMoviePage extends GetView<MoviesController> {
         Text(movie.overview ?? 'Sin descripción',
             style: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold)),
         SizedBox(height: 5),
+        ElevatedButton(
+          onPressed: () => Get.toNamed(Routes.TRAILER, arguments: movie),
+          child: Text('Ver Trailer'),
+          style: ElevatedButton.styleFrom(primary: Color.fromRGBO(41, 33, 66, 0.8), shape: StadiumBorder()),
+        ),
         Text('Reparto', style: TextStyle(fontSize: 18, color: Colors.white)),
         SizedBox(height: 5),
         FutureBuilder(
-          future: controller.getCast(movie.id.toString()),
+          future: controller.getCast(movie.id!),
           builder: (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
             if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
 

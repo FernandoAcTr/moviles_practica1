@@ -12,4 +12,5 @@ abstract class Routes {
   static const EDITPROFILE = '/edit_profile';
   static const MOVIES = '/movies';
   static const DETAILS_MOVIE = '/details_movie';
+  static const TRAILER = '/trailer';
 }

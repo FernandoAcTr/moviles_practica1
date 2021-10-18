@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:practica2/src/modules/movies/movies_binding.dart';
+import 'package:practica2/src/modules/movies/trailer_page.dart';
 import 'package:practica2/src/modules/notas/notas_binding.dart';
 import 'package:practica2/src/modules/profile/profile_binding.dart';
 import 'package:practica2/src/modules/dashboard/dashboard_page.dart';
@@ -65,6 +66,12 @@ abstract class AppPages {
     GetPage(
       name: Routes.DETAILS_MOVIE,
       page: () => DetailMoviePage(),
+    ),
+    GetPage(
+      name: Routes.TRAILER,
+      page: () => TrailerPage(),
+      transition: Transition.fade,
+      binding: TrailerBinding(),
     ),
   ];
 }

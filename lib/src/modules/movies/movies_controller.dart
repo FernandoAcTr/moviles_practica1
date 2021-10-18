@@ -11,7 +11,10 @@ class MoviesController extends GetxController {
   final MovieService movieService;
   final MovieRepository movieRepository;
 
-  MoviesController({required this.movieService, required this.movieRepository});
+  MoviesController({
+    required this.movieService,
+    required this.movieRepository,
+  });
 
   final pageController = PageController();
 
@@ -69,7 +72,7 @@ class MoviesController extends GetxController {
     }
   }
 
-  Future<List<Actor>>? getCast(String movieId) {
+  Future<List<Actor>>? getCast(int movieId) {
     try {
       return movieService.getCast(movieId);
     } catch (e) {
