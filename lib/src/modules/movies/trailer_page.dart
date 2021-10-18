@@ -16,7 +16,13 @@ class TrailerPage extends GetView<TrailerController> {
           future: controller.fetchTrailer(movie),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
-            if (!snapshot.data!) return Center(child: Text('No hay trailer disponible'));
+            if (!snapshot.data!)
+              return Center(
+                child: Text(
+                  'No hay trailer disponible',
+                  style: TextStyle(color: Colors.white),
+                ),
+              );
 
             return YoutubePlayer(
               controller: controller.videoController!,

@@ -1,10 +1,4 @@
-import 'package:practica2/src/data/database/db_helper.dart';
-import 'package:sqflite/sqflite.dart';
-
 abstract class AbstractDBRepository {
-  DBHelper dbHelper = DBHelper();
-  Future<Database?> get database => dbHelper.database;
-
   Future<int> insert(Map<String, dynamic> row);
   Future<int> update(Map<String, dynamic> row);
   Future<int> delete(int id);

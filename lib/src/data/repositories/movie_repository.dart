@@ -1,7 +1,15 @@
 import 'package:practica2/src/data/contracts/I_db_repository.dart';
+import 'package:practica2/src/data/database/db_helper.dart';
 import 'package:practica2/src/data/models/movie.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MovieRepository extends AbstractDBRepository {
+  final DBHelper dbHelper;
+
+  MovieRepository(this.dbHelper);
+
+  Future<Database?> get database => dbHelper.database;
+
   @override
   Future<int> delete(int id) async {
     final con = await database;

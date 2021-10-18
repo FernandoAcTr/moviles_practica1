@@ -1,7 +1,15 @@
 import 'package:practica2/src/data/contracts/I_db_repository.dart';
+import 'package:practica2/src/data/database/db_helper.dart';
 import 'package:practica2/src/data/models/nota.dart';
+import 'package:sqflite/sqflite.dart';
 
 class NotaRepository extends AbstractDBRepository {
+  final DBHelper dbHelper;
+
+  NotaRepository(this.dbHelper);
+
+  Future<Database?> get database => dbHelper.database;
+
   Future<int> insert(Map<String, dynamic> row) async {
     final con = await database;
     return con!.insert(dbHelper.notasTable, row);
