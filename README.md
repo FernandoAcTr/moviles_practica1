@@ -1,16 +1,10 @@
 # practica2
 
-A new Flutter project.
+Practica realizada en flutter en donde se ilustran conceptos como 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Manejo de intenciones con paquete url_launcher
+- Uso de Drawer 
+- Manejo de SQLite (implementacion de CRUD)
+- Implementacion de Splash Screen
+- Uso de GetX para manejo de estado 
+- Consumo de API mediante MovieDB
